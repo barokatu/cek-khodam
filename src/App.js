@@ -6,12 +6,14 @@ function App() {
   const [name, setName] = useState('')
   const [checkedKhodam, setCheckedKhodam] = useState('')
   const [resultKhodam, setResultKhodam] = useState('')
+  const [isShowDetail, setIsShowDetail] = useState(false)
 
   const handleCheckKhodam = () => {
     setCheckedKhodam(name);
     const randomNumber = Math.floor(Math.random() * 200); 
     console.log('khodam ', name, ' adalah ', dataKhodam[randomNumber]);
     setResultKhodam(dataKhodam[randomNumber]) 
+    setIsShowDetail(true)
   }
 
   return (
@@ -23,7 +25,7 @@ function App() {
         </p>
         <input type="text" style={{borderRadius: 16, height: 30, width: 400, textAlign: 'center', fontSize: 20, marginBottom: 20}} value={name} onChange={(e) => setName(e.target.value)} />
         <button onClick={handleCheckKhodam} style={{borderRadius: 8, height: 50, width: 200, fontSize: '1rem', backgroundColor: '#BDBDBD', marginBottom: 20}}>CEK KHODAM</button>
-        {name !== '' ? <section style={{borderRadius: 16, backgroundColor: '#E0E0E0', width: 500, color: "black"}}>
+        {isShowDetail ? <section style={{borderRadius: 16, backgroundColor: '#E0E0E0', width: 500, color: "black"}}>
           <p>Khodam {checkedKhodam} adalah: </p>
           <p>{resultKhodam}</p>
         </section> : null}
